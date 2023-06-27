@@ -72,5 +72,34 @@ namespace LibraryWeb.Controllers
 
 
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category? categoryfromdb = _db.Categories.Find(id);
+            if (categoryfromdb == null) { return NotFound(); }
+
+
+            return View(categoryfromdb);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeletePOST(int? id)
+        {
+
+            Category? obj = _db.Categories.Find(id);
+            if (obj==null) { return NotFound() ; }
+
+            _db.Categories.Remove(obj);
+                return RedirectToAction("Index");
+            
+
+           
+
+
+        }
     }
 }
