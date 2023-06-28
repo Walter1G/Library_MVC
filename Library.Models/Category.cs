@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace LibraryWeb.Models
+namespace Library.Models
 {
     public class Category
     {
@@ -12,7 +12,7 @@ namespace LibraryWeb.Models
         [MaxLength(30)]
         public string Name { get; set; }
         [DisplayName("Display Order")]
-        [Range(1,100)]
+        [Range(1, 100)]
         public int DisplayOrder { get; set; }
 
     }

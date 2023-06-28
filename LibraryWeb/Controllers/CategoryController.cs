@@ -1,5 +1,5 @@
-﻿using LibraryWeb.Data;
-using LibraryWeb.Models;
+﻿using Library.DataAccess.Data;
+using Library.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryWeb.Controllers

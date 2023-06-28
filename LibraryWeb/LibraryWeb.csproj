@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Library.DataAcess\Library.DataAcess.csproj" />
+    <ProjectReference Include="..\Library.Models\Library.Models.csproj" />
+  </ItemGroup>
+
 </Project>
