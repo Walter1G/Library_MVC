@@ -36,7 +36,9 @@ namespace LibraryWeb.Controllers
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Category Created successfully";
                 return RedirectToAction("Index");
+
             }
 
             return View();
@@ -65,6 +67,7 @@ namespace LibraryWeb.Controllers
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
 
@@ -94,8 +97,9 @@ namespace LibraryWeb.Controllers
             if (obj==null) { return NotFound() ; }
 
             _db.Categories.Remove(obj);
-                return RedirectToAction("Index");
-            
+            _db.SaveChanges();
+            TempData["success"] = "Category Deleted successfully";
+            return RedirectToAction("Index");   
 
            
 
