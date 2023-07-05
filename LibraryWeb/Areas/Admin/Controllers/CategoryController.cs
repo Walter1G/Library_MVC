@@ -2,6 +2,7 @@
 using Library.DataAccess.Repository.IRepository;
 using Library.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LibraryWeb.Areas.Admin.Controllers
 {
@@ -18,6 +19,14 @@ namespace LibraryWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
+            //IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+            //    u => new SelectListItem
+            //    {
+            //        Text = u.Name,
+            //        Value =u.Id.ToString()
+            //    }) ;
+
+
             return View(objCategoryList);
         }
 

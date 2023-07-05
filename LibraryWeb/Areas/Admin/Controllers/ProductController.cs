@@ -1,11 +1,13 @@
 ﻿using Library.DataAccess.Data;
 using Library.DataAccess.Repository.IRepository;
 using Library.Models;
+using Library.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LibraryWeb.Areas.Admin.Controllers
 {
-    [Area("Admin")]    
+    [Area("Admin")]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -18,62 +20,106 @@ namespace LibraryWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+
+
+
             return View(objProductList);
         }
 
-        public IActionResult Create()
-        {
-            return View();
+        public IActionResult Upsert(int? id)
+         {
+
+
+            ProductVM productVM = new()
+            {
+               
+                CategoryList = _unitOfWork.Category.GetAll()
+                .Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+                Product = new Product()
+            };
+
+            if(id==null || id == 0)
+            {
+                //caseCreate
+                return View(productVM);
+            }
+            else
+            {
+                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
+                return View(productVM);
+            }
+
+            
+
+
         }
 
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
         {
-           
+
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(obj);
+                _unitOfWork.Product.Add(productVM.Product);
                 _unitOfWork.Save();
                 TempData["success"] = "Product Created successfully";
                 return RedirectToAction("Index");
 
             }
-
-            return View();
-
-
-        }
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
+            else
             {
-                return NotFound();
-            }
-            Product? productfromdb = _unitOfWork.Product.Get(u => u.Id == id);
-            if (productfromdb == null) { return NotFound(); }
-
-
-            return View(productfromdb);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(Product obj)
-        {
-
-
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product updated successfully";
-                return RedirectToAction("Index");
+                productVM.CategoryList = _unitOfWork.Category.GetAll()
+                .Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+                return View(productVM);
             }
 
-            return View();
-
+            
 
         }
+
+           
+
+
+        
+        //public IActionResult Edit(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    Product? productfromdb = _unitOfWork.Product.Get(u => u.Id == id);
+        //    if (productfromdb == null) { return NotFound(); }
+
+
+        //    return View(productfromdb);
+        //}
+
+        //[HttpPost]
+        //public IActionResult Edit(Product obj)
+        //{
+
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        _unitOfWork.Product.Update(obj);
+        //        _unitOfWork.Save();
+        //        TempData["success"] = "Product updated successfully";
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    return View();
+
+
+        //}
 
         public IActionResult Delete(int? id)
         {

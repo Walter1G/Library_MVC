@@ -6,6 +6,7 @@ namespace Library.Models
     public class Category
     {
         [Key]
+        [Required]
         public int Id { get; set; }
         [Required]
         [DisplayName("Category Name")]
