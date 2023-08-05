@@ -19,6 +19,7 @@ namespace Library.DataAccess.Data
         //dbset to create a table 
         public DbSet<Category> Categories{ get; set; }
         public DbSet<Product> Products{ get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         //overide onModelcreating to seed data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
