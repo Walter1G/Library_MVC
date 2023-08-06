@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Library.DataAcess\Library.DataAccess.csproj" />
     <ProjectReference Include="..\Library.Models\Library.Models.csproj" />
+    <ProjectReference Include="..\Library.Utility\Library.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>
