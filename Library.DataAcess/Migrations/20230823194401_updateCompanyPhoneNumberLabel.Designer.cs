@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230823075837_addCompanyToUser")]
-    partial class addCompanyToUser
+    [Migration("20230823194401_updateCompanyPhoneNumberLabel")]
+    partial class updateCompanyPhoneNumberLabel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

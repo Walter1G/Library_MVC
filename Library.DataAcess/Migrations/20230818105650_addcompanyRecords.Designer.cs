@@ -81,7 +81,7 @@ namespace Library.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhonenNumber")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalCode")
@@ -103,7 +103,7 @@ namespace Library.DataAccess.Migrations
                             Id = 1,
                             City = "Tech City",
                             Name = "Tech Solution",
-                            PhonenNumber = "075546564",
+                            PhoneNumber = "075546564",
                             PostalCode = "122122",
                             State = "IL",
                             StreetAddress = "123 Tech St"
@@ -113,7 +113,7 @@ namespace Library.DataAccess.Migrations
                             Id = 2,
                             City = "viv City",
                             Name = "Vivid Books",
-                            PhonenNumber = "0755468884",
+                            PhoneNumber = "0755468884",
                             PostalCode = "2252122",
                             State = "IL",
                             StreetAddress = "999 Viv St"
@@ -123,7 +123,7 @@ namespace Library.DataAccess.Migrations
                             Id = 3,
                             City = "Lala  City",
                             Name = "Readers Club",
-                            PhonenNumber = "075546564",
+                            PhoneNumber = "075546564",
                             PostalCode = "99999",
                             State = "NY",
                             StreetAddress = "99 Main St"

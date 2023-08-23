@@ -27,7 +27,7 @@ namespace Library.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Companyies",
-                columns: new[] { "Id", "City", "Name", "PhonenNumber", "PostalCode", "State", "StreetAddress" },
+                columns: new[] { "Id", "City", "Name", "PhoneNumber", "PostalCode", "State", "StreetAddress" },
                 values: new object[,]
                 {
                     { 1, "Tech City", "Tech Solution", "075546564", "122122", "IL", "123 Tech St" },

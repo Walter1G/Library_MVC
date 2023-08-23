@@ -21,6 +21,8 @@ namespace Library.DataAccess.Data
         public DbSet<Product> Products{ get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Company> Companyies { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         //overide onModelcreating to seed data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,9 +37,9 @@ namespace Library.DataAccess.Data
                );
 
             modelBuilder.Entity<Company>().HasData(
-               new Company { Id = 1, Name = "Tech Solution", StreetAddress = "123 Tech St", City="Tech City", PostalCode="122122",PhonenNumber="075546564",State="IL" },
-               new Company { Id = 2, Name = "Vivid Books", StreetAddress = "999 Viv St", City="viv City", PostalCode="2252122",PhonenNumber="0755468884",State="IL" },
-               new Company { Id = 3, Name = "Readers Club", StreetAddress = "99 Main St", City="Lala  City", PostalCode="99999",PhonenNumber="075546564", State="NY" }
+               new Company { Id = 1, Name = "Tech Solution", StreetAddress = "123 Tech St", City="Tech City", PostalCode="122122",PhoneNumber="075546564",State="IL" },
+               new Company { Id = 2, Name = "Vivid Books", StreetAddress = "999 Viv St", City="viv City", PostalCode="2252122",PhoneNumber="0755468884",State="IL" },
+               new Company { Id = 3, Name = "Readers Club", StreetAddress = "99 Main St", City="Lala  City", PostalCode="99999",PhoneNumber="075546564", State="NY" }
                
                );
 

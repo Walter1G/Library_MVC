@@ -78,7 +78,7 @@ namespace Library.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhonenNumber")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalCode")
@@ -92,7 +92,7 @@ namespace Library.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companyies");
+                    b.ToTable("Company");
 
                     b.HasData(
                         new
@@ -100,7 +100,7 @@ namespace Library.DataAccess.Migrations
                             Id = 1,
                             City = "Tech City",
                             Name = "Tech Solution",
-                            PhonenNumber = "075546564",
+                            PhoneNumber = "075546564",
                             PostalCode = "122122",
                             State = "IL",
                             StreetAddress = "123 Tech St"
@@ -110,7 +110,7 @@ namespace Library.DataAccess.Migrations
                             Id = 2,
                             City = "viv City",
                             Name = "Vivid Books",
-                            PhonenNumber = "0755468884",
+                            PhoneNumber = "0755468884",
                             PostalCode = "2252122",
                             State = "IL",
                             StreetAddress = "999 Viv St"
@@ -120,7 +120,7 @@ namespace Library.DataAccess.Migrations
                             Id = 3,
                             City = "Lala  City",
                             Name = "Readers Club",
-                            PhonenNumber = "075546564",
+                            PhoneNumber = "075546564",
                             PostalCode = "99999",
                             State = "NY",
                             StreetAddress = "99 Main St"
@@ -261,6 +261,33 @@ namespace Library.DataAccess.Migrations
                             Price50 = 22.0,
                             Title = "Leaves and Wonders"
                         });
+                });
+
+            modelBuilder.Entity("Library.Models.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -507,6 +534,25 @@ namespace Library.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Library.Models.ShoppingCart", b =>
+                {
+                    b.HasOne("Library.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Library.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
