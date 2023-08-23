@@ -4,6 +4,7 @@ using Library.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230809132506_addCompanyTable")]
+    partial class addCompanyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,38 +96,6 @@ namespace Library.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companyies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            City = "Tech City",
-                            Name = "Tech Solution",
-                            PhonenNumber = "075546564",
-                            PostalCode = "122122",
-                            State = "IL",
-                            StreetAddress = "123 Tech St"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            City = "viv City",
-                            Name = "Vivid Books",
-                            PhonenNumber = "0755468884",
-                            PostalCode = "2252122",
-                            State = "IL",
-                            StreetAddress = "999 Viv St"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            City = "Lala  City",
-                            Name = "Readers Club",
-                            PhonenNumber = "075546564",
-                            PostalCode = "99999",
-                            State = "NY",
-                            StreetAddress = "99 Main St"
-                        });
                 });
 
             modelBuilder.Entity("Library.Models.Product", b =>
