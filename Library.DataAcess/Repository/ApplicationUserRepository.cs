@@ -10,19 +10,16 @@ using System.Threading.Tasks;
 
 namespace Library.DataAccess.Repository
 {
-    public class ShoppingCartRepository : Repository<ShoppingCart>, IShoppingCartRepository
+    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository  
     {
         private ApplicationDbContext _db;
-        public ShoppingCartRepository(ApplicationDbContext db):base(db)
+        public ApplicationUserRepository(ApplicationDbContext db):base(db)
         {
             _db= db;
         }
 
-              
+       
 
-        public void Update(ShoppingCart obj)
-        {
-            _db.ShoppingCarts.Update(obj);
-        }
+        
     }
 }
